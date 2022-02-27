@@ -1,0 +1,57 @@
+@startuml mi_programa 
+
+class Prueba {
+    - nombre
+    - listaDePreguntas 
+    - estado
+    + agregarPregunta(Pregunta)
+    + eliminarPregunta(int)
+    - contarPreguntasCorrectas():int
+    + imprimirResultado()
+}
+
+class Pregunta {
+    - String enunciado
+    - listaDeOpciones
+    - solucion
+    - calificacion
+    + validarSoluciones(Solucion)
+    + asignarRespuesta()
+}
+
+class Solucion {
+
+}
+
+class Respuesta {
+
+}
+
+class Opcion {
+
+}
+
+class Estudiante {
+    - nombre
+    - prueba 
+    + realiza_la_prueba()
+}
+
+class Profesor {
+    - nombre
+    - listaDeEstudiantes 
+    + agregarEstudiante()
+}
+
+Prueba --> "*" Pregunta 
+Profesor --> "*" Estudiante
+Estudiante --> "1" Prueba
+
+Pregunta -right-* "1" Solucion 
+Pregunta --* "1" Respuesta 
+Pregunta -left-* "*" Opcion
+
+Solucion --|> Respuesta
+Opcion --|> Respuesta
+
+@enduml 
